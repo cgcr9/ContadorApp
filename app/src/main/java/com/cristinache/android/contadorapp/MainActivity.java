@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     EditText cConteo;
     Button bContar;
     Button bReiniciar;
+    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +27,8 @@ public class MainActivity extends AppCompatActivity {
         bContar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s = cConteo.getText().toString();
-                int i = Integer.parseInt(s);
                 i++;
-                s = Integer.toString(i);
+                String s = Integer.toString(i);
                 cConteo.setText(s); //Se visualiza el nuevo valor en el EditText
             }
         });
