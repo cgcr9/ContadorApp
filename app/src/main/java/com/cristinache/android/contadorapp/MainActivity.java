@@ -9,12 +9,20 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     //Variables de instancia
-    EditText cConteo;
-    Button bContar;
-    Button bReiniciar;
-    int i = 0;
+    private EditText cConteo;
+    private Button bContar;
+    private Button bReiniciar;
+    private int i = 0;
+    private final String TEXTO_CONTEO = "campoConteo"; //es la llave
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(TEXTO_CONTEO, cConteo.getText().toString());
+
+    }
+
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -23,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
         cConteo = (EditText) findViewById(R.id.campoConteo);
         bContar = (Button) findViewById(R.id.botonContar);
         bReiniciar = (Button) findViewById(R.id.botonReiniciar);
+
+        if (savedInstanceState != null){
+                String s = savedInstanceState.getString(TEXTO_CONTEO);
+                cConteo.setText(s);
+                i = Integer.parseInt(s);
+        }
 
         bContar.setOnClickListener(new View.OnClickListener() {
             @Override
