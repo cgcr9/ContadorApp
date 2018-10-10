@@ -18,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(TEXTO_CONTEO, cConteo.getText().toString());
+        i = Integer.parseInt(cConteo.getText().toString());
+        outState.putInt(TEXTO_CONTEO, i);
 
     }
 
@@ -33,9 +34,7 @@ public class MainActivity extends AppCompatActivity {
         bReiniciar = (Button) findViewById(R.id.botonReiniciar);
 
         if (savedInstanceState != null){
-                String s = savedInstanceState.getString(TEXTO_CONTEO);
-                cConteo.setText(s);
-                i = Integer.parseInt(s);
+                i = savedInstanceState.getInt(TEXTO_CONTEO);
         }
 
         bContar.setOnClickListener(new View.OnClickListener() {
